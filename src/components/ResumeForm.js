@@ -11,7 +11,7 @@ const ResumeForm = () => {
 
   const handleAnalyze = async () => {
     if (!resumeFile || !jobDescription.trim()) {
-      alert("⚠️ Please upload a resume and paste the job description.");
+      alert(" Please upload a resume and paste the job description.");
       return;
     }
 
@@ -21,7 +21,7 @@ const ResumeForm = () => {
 
     try {
       setLoading(true);
-      const response = await fetch("http://localhost:8084/api/resume/analyze", {
+      const response = await fetch("https://resume-ai-analyzer-production.up.railway.app/api/resume/analyze", {
         method: "POST",
         body: formData,
       });
@@ -31,7 +31,7 @@ const ResumeForm = () => {
       const data = await response.json();
       setResult(data);
     } catch (error) {
-      alert("❌ Something went wrong while analyzing the resume.");
+      alert(" Something went wrong while analyzing the resume.");
       console.error("Error:", error);
     } finally {
       setLoading(false);
@@ -67,7 +67,7 @@ const ResumeForm = () => {
 
       <div className="button-row">
         <button className="analyze" onClick={handleAnalyze} disabled={loading}>
-          {loading ? "Analyzing..." : "🚀 Analyze Resume"}
+          {loading ? "Analyzing..." : " Analyze Resume"}
         </button>
         <button className="reset" onClick={handleReset}>🔄 Reset</button>
       </div>
@@ -75,7 +75,7 @@ const ResumeForm = () => {
       {result && (
         <div className="result-box">
           <h3>------------------- Result Section -------------------</h3>
-          <p><strong>Match Score:</strong> ✅ {result.matchScore}/100</p>
+          <p><strong>Match Score:</strong>  {result.matchScore}/100</p>
 
           <div>
             <strong>Strengths:</strong>

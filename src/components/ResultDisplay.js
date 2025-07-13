@@ -18,7 +18,7 @@ ${suggestions.map((s) => `⚠️ ${s}`).join("\n")}
   return (
     <div>
       <h3>------------------- Result Section -------------------</h3>
-      <p><strong>Match Score:</strong> ✅ {matchScore}/100</p>
+      <p><strong>Match Score:</strong>  {matchScore}/100</p>
 
       <h4>Strengths:</h4>
       <ul>
@@ -30,7 +30,7 @@ ${suggestions.map((s) => `⚠️ ${s}`).join("\n")}
       <h4>Suggestions:</h4>
       <ul>
         {suggestions.map((s, i) => (
-          <li key={i}>⚠️ {s}</li>
+          <li key={i}> {s}</li>
         ))}
       </ul>
 

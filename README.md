@@ -28,4 +28,21 @@ An elegant frontend built using **ReactJS** that lets users:
   <img src="public/screenshots/Screenshot 2025-07-13 at 2.24.55 PM.png" alt="Resume Analyzer Screenshot 2" width="600" />
 </p>
 
+
+---
+
+## 🚀 Getting Started
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/Aliurooz786/resume-analyzer-ui.git
+cd resume-analyzer-ui
+
+## Install dependencies
+
+npm install
+npm start
+http://localhost:3000
+
 ## 📸 UI Preview

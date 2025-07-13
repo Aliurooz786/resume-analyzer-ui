@@ -8,20 +8,20 @@ const ResultSection = ({ result }) => {
   const { matchScore, strengths, suggestions } = result;
 
   const formattedText = `
-Match Score: ✅ ${matchScore}/100
+Match Score:  ${matchScore}/100
 
 Strengths:
 ${strengths.map((s) => `✓ ${s}`).join("\n")}
 
 Suggestions:
-${suggestions.map((s) => `⚠️ ${s}`).join("\n")}
+${suggestions.map((s) => ` ${s}`).join("\n")}
 `;
 
   return (
     <div className="result-section">
       <h3>------------------- Result Section -------------------</h3>
 
-      <p className="score">Match Score: ✅ {matchScore}/100</p>
+      <p className="score">Match Score: {matchScore}/100</p>
 
       <div className="section-block">
         <strong>Strengths:</strong>
@@ -36,7 +36,7 @@ ${suggestions.map((s) => `⚠️ ${s}`).join("\n")}
         <strong>Suggestions:</strong>
         <ul>
           {suggestions.map((point, idx) => (
-            <li key={idx}>⚠️ {point}</li>
+            <li key={idx}> {point}</li>
           ))}
         </ul>
       </div>
