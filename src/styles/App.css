@@ -1,0 +1,67 @@
+/* src/styles/App.css */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f6f8fa;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  text-align: center;
+  color: #1f2937;
+  margin-bottom: 2rem;
+}
+
+textarea {
+  width: 100%;
+  height: 120px;
+  padding: 10px;
+  font-size: 1rem;
+  margin-top: 0.5rem;
+  resize: vertical;
+}
+
+button {
+  margin-top: 1rem;
+  margin-right: 1rem;
+  padding: 10px 20px;
+  font-weight: bold;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+}
+
+.analyze-btn {
+  background-color: #10b981;
+  color: white;
+}
+
+.reset-btn {
+  background-color: #ef4444;
+  color: white;
+}
+
+.copy-btn {
+  background-color: #3b82f6;
+  color: white;
+}
+
+.result-box {
+  margin-top: 2rem;
+  background-color: #f1f5f9;
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+.result-box h3 {
+  margin-bottom: 0.5rem;
+}

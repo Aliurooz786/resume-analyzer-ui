@@ -1,0 +1,34 @@
+.result-section {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background-color: #f9f9f9;
+  border-radius: 12px;
+  border: 1px solid #ddd;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.06);
+}
+
+.score {
+  font-weight: bold;
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+}
+
+.section-block {
+  margin-top: 1rem;
+}
+
+.section-block ul {
+  margin-left: 1rem;
+  margin-top: 0.5rem;
+}
+
+.section-block li {
+  line-height: 1.6;
+}
+
+.footer {
+  margin-top: 1.5rem;
+  font-size: 0.85rem;
+  color: #666;
+  text-align: center;
+}
