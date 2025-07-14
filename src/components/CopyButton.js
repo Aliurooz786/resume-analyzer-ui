@@ -1,5 +1,8 @@
+
 import React, { useState } from "react";
-import "../styles/CopyButton.css";
+import Button from '@mui/material/Button';
+import ContentCopyIcon from '@mui/icons-material/ContentCopy';
+import CheckIcon from '@mui/icons-material/Check';
 
 const CopyButton = ({ text }) => {
   const [copied, setCopied] = useState(false);
@@ -15,9 +18,15 @@ const CopyButton = ({ text }) => {
   };
 
   return (
-    <button className="copy-button" onClick={handleCopy}>
-      📋 {copied ? "Copied!" : "Copy Result to Clipboard"}
-    </button>
+    <Button
+      variant={copied ? "contained" : "outlined"}
+      color={copied ? "success" : "primary"}
+      startIcon={copied ? <CheckIcon /> : <ContentCopyIcon />}
+      onClick={handleCopy}
+      sx={{ minWidth: 220 }}
+    >
+      {copied ? "Copied!" : "Copy Result to Clipboard"}
+    </Button>
   );
 };
 

@@ -1,7 +1,17 @@
+
 import React, { useState } from "react";
 import ResultSection from "./ResultSection";
 import CopyButton from "./CopyButton";
-import "../styles/ResumeForm.css";
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
+import Paper from '@mui/material/Paper';
+import Stack from '@mui/material/Stack';
+import CircularProgress from '@mui/material/CircularProgress';
+import CloudUploadIcon from '@mui/icons-material/CloudUpload';
+import RestartAltIcon from '@mui/icons-material/RestartAlt';
+import InsightsIcon from '@mui/icons-material/Insights';
 
 const ResumeForm = () => {
   const [resumeFile, setResumeFile] = useState(null);
@@ -45,60 +55,66 @@ const ResumeForm = () => {
   };
 
   return (
-    <div className="resume-box">
-      <h2 className="section-title">📄 Upload Resume & Paste Job Description 📝</h2>
+    <Paper elevation={3} sx={{ p: { xs: 2, sm: 4 }, mt: 2, borderRadius: 3 }}>
+      <Typography variant="h5" align="center" color="secondary" fontWeight={600} gutterBottom>
+        <span role="img" aria-label="resume">📄</span> Upload Resume & Paste Job Description <span role="img" aria-label="job">📝</span>
+      </Typography>
 
-      <div className="input-section">
-        <input
-          type="file"
-          accept=".pdf"
-          onChange={(e) => setResumeFile(e.target.files[0])}
-          className="file-input"
-        />
+      <Stack spacing={3}>
+        <Button
+          variant="outlined"
+          component="label"
+          startIcon={<CloudUploadIcon />}
+          color={resumeFile ? 'success' : 'primary'}
+        >
+          {resumeFile ? resumeFile.name : 'Upload PDF Resume'}
+          <input
+            type="file"
+            accept=".pdf"
+            hidden
+            onChange={(e) => setResumeFile(e.target.files[0])}
+          />
+        </Button>
 
-        <textarea
-          rows={8}
-          placeholder="Paste Job Description here..."
+        <TextField
+          label="Paste Job Description here..."
+          multiline
+          minRows={6}
           value={jobDescription}
           onChange={(e) => setJobDescription(e.target.value)}
-          className="jd-textarea"
+          variant="outlined"
+          fullWidth
         />
-      </div>
 
-      <div className="button-row">
-        <button className="analyze" onClick={handleAnalyze} disabled={loading}>
-          {loading ? "Analyzing..." : " Analyze Resume"}
-        </button>
-        <button className="reset" onClick={handleReset}>🔄 Reset</button>
-      </div>
+        <Stack direction="row" spacing={2} justifyContent="center">
+          <Button
+            variant="contained"
+            color="primary"
+            startIcon={loading ? <CircularProgress size={20} color="inherit" /> : <InsightsIcon />}
+            onClick={handleAnalyze}
+            disabled={loading}
+            sx={{ minWidth: 160 }}
+          >
+            {loading ? 'Analyzing...' : 'Analyze Resume'}
+          </Button>
+          <Button
+            variant="outlined"
+            color="secondary"
+            startIcon={<RestartAltIcon />}
+            onClick={handleReset}
+            sx={{ minWidth: 120 }}
+          >
+            Reset
+          </Button>
+        </Stack>
 
-      {result && (
-        <div className="result-box">
-          <h3>------------------- Result Section -------------------</h3>
-          <p><strong>Match Score:</strong>  {result.matchScore}/100</p>
-
-          <div>
-            <strong>Strengths:</strong>
-            <ul>
-              {result.strengths.map((s, i) => <li key={i}>✓ {s}</li>)}
-            </ul>
-          </div>
-
-          <div>
-            <strong>Suggestions:</strong>
-            <ul>
-              {result.suggestions.map((s, i) => <li key={i}>⚠️ {s}</li>)}
-            </ul>
-          </div>
-
-          <CopyButton text={
-            `Match Score: ${result.matchScore}/100\n\nStrengths:\n${result.strengths.map(s => `✓ ${s}`).join('\n')}\n\nSuggestions:\n${result.suggestions.map(s => `⚠️ ${s}`).join('\n')}`
-          } />
-
-          <p className="footer">🔒 We do not store your data</p>
-        </div>
-      )}
-    </div>
+        {result && (
+          <Box mt={4}>
+            <ResultSection result={result} />
+          </Box>
+        )}
+      </Stack>
+    </Paper>
   );
 };
 
