@@ -16,9 +16,9 @@ The analysis includes a match score, identifies key strengths from the resume, a
 ## Application Preview
 
 <p align="center">
-  <img src="public/screenshots/Screenshot 2025-07-13 at 2.24.20 PM.png" alt="Resume Analyzer Screenshot 1" width="600" />
+  <img src="https://raw.githubusercontent.com/Aliurooz786/resume-analyzer-ui/main/public/screenshots/Screenshot%202025-07-13%20at%202.24.20%E2%80%AFPM.png" alt="Resume Analyzer Screenshot 1" width="600" />
   <br/>
-  <img src="public/screenshots/Screenshot 2025-07-13 at 2.24.55 PM.png" alt="Resume Analyzer Screenshot 2" width="600" />
+  <img src="https://raw.githubusercontent.com/Aliurooz786/resume-analyzer-ui/main/public/screenshots/Screenshot%202025-07-13%20at%202.24.55%E2%80%AFPM.png" alt="Resume Analyzer Screenshot 2" width="600" />
 </p>
 
 ## Technology Stack
