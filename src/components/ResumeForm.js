@@ -31,7 +31,7 @@ const ResumeForm = () => {
 
     try {
       setLoading(true);
-      const response = await fetch("https://resume-ai-analyzer-production.up.railway.app/api/resume/analyze", {
+      const response = await fetch("http://localhost:8084/api/resume/analyze", {
         method: "POST",
         body: formData,
       });
