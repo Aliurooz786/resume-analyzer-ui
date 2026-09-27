@@ -1,8 +1,9 @@
 
 export const analyzeResume = async (formData) => {
-  const response = await fetch("http://localhost:8084/api/resume/analyze", {
+  const response = await fetch("http://localhost:8086/api/v1/resume/tailor", {
     method: "POST",
     body: formData,
   });
-  return response.json();
+  if (!response.ok) throw new Error("API error");
+  return response.blob();
 };

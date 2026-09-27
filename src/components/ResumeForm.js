@@ -1,7 +1,5 @@
 
 import React, { useState } from "react";
-import ResultSection from "./ResultSection";
-import CopyButton from "./CopyButton";
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
@@ -12,6 +10,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import RestartAltIcon from '@mui/icons-material/RestartAlt';
 import InsightsIcon from '@mui/icons-material/Insights';
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 
 const ResumeForm = () => {
   const [resumeFile, setResumeFile] = useState(null);
@@ -26,20 +25,30 @@ const ResumeForm = () => {
     }
 
     const formData = new FormData();
-    formData.append("resumeFile", resumeFile);
+    formData.append("file", resumeFile);
     formData.append("jobDescription", jobDescription);
 
     try {
       setLoading(true);
-      const response = await fetch("http://localhost:8084/api/resume/analyze", {
+      setResult(null);
+      const response = await fetch("http://localhost:8086/api/v1/resume/tailor", {
         method: "POST",
         body: formData,
       });
 
       if (!response.ok) throw new Error("API error");
 
-      const data = await response.json();
-      setResult(data);
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = "ATS_Optimized_Resume.pdf";
+      document.body.appendChild(a);
+      a.click();
+      window.URL.revokeObjectURL(url);
+      document.body.removeChild(a);
+
+      setResult(true);
     } catch (error) {
       alert(" Something went wrong while analyzing the resume.");
       console.error("Error:", error);
@@ -95,7 +104,7 @@ const ResumeForm = () => {
             disabled={loading}
             sx={{ minWidth: 160 }}
           >
-            {loading ? 'Analyzing...' : 'Analyze Resume'}
+            {loading ? 'Tailoring...' : 'Tailor Resume'}
           </Button>
           <Button
             variant="outlined"
@@ -109,8 +118,14 @@ const ResumeForm = () => {
         </Stack>
 
         {result && (
-          <Box mt={4}>
-            <ResultSection result={result} />
+          <Box mt={4} textAlign="center">
+             <CheckCircleOutlineIcon color="success" sx={{ fontSize: 60 }} />
+             <Typography variant="h6" color="success.main" mt={2}>
+               ✅ Resume Tailored Successfully
+             </Typography>
+             <Typography variant="body1" color="text.secondary">
+               ✅ PDF Download Started
+             </Typography>
           </Box>
         )}
       </Stack>
